@@ -66,22 +66,22 @@
   // ---- Profile Page (profile.html) — QR scan destination ----
 
   const memberImages = {
-    "ashmi": "assets/images/members/ashmi-g-suneer.png",
-    "dhyan": "assets/images/members/dhyan-s.png",
-    "zeon": "assets/images/members/adithyan-up.png",
-    "geethu": "assets/images/members/geethu-s-bahulayan.png",
-    "jeevan": "assets/images/members/jeevan-s.png",
-    "krishna": "assets/images/members/krishna-m-j.png",
-    "lakshmi": "assets/images/members/lakshmi-g-nair.png",
-    "sanemi": "assets/images/members/niranjan-s.png",
-    "pavithra": "assets/images/members/pavithra.png",
-    "sanjana": "assets/images/members/sanjana-s.png",
-    "saranya": "assets/images/members/saranya-a.png",
-    "mtyt": "assets/images/members/sreedev-s-s.png",
-    "srs": "assets/images/members/sreehari-s.png",
-    "hvh": "assets/images/members/havis-v-h.png",
-    "indu": "assets/images/members/induchoodan-v-s.png",
-    "hgp": "assets/images/members/harigovind-p-nair.png"
+    "ashmi": "assets/images/members/ashmi-g-suneer.webp",
+    "dhyan": "assets/images/members/dhyan-s.webp",
+    "zeon": "assets/images/members/adithyan-up.webp",
+    "geethu": "assets/images/members/geethu-s-bahulayan.webp",
+    "jeevan": "assets/images/members/jeevan-s.webp",
+    "krishna": "assets/images/members/krishna-m-j.webp",
+    "lakshmi": "assets/images/members/lakshmi-g-nair.webp",
+    "sanemi": "assets/images/members/niranjan-s.webp",
+    "pavithra": "assets/images/members/pavithra.webp",
+    "sanjana": "assets/images/members/sanjana-s.webp",
+    "saranya": "assets/images/members/saranya-a.webp",
+    "mtyt": "assets/images/members/sreedev-s-s.webp",
+    "srs": "assets/images/members/sreehari-s.webp",
+    "hvh": "assets/images/members/havis-v-h.webp",
+    "indu": "assets/images/members/induchoodan-v-s.webp",
+    "hgp": "assets/images/members/harigovind-p-nair.webp"
   };
 
   function renderProfile(member, memberIndex) {
