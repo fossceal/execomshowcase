@@ -1,0 +1,1163 @@
+/* ===================================================================
+   EXECOM XXVI — ID Card Badge Design System
+   Dark page background with white badge-style member cards
+   Matching the physical ID card aesthetic
+   =================================================================== */
+
+/* ----- Reset & Base ----- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Page palette — light background */
+  --bg-primary: #e5d9c5;
+  --bg-secondary: #fefdfa;
+  --text-primary: #111827;
+  --text-muted: #6b7280;
+
+  /* Card palette — white/light cards */
+  --bg-card: #ffffff;
+  --bg-card-hover: #ffffff;
+  --border-card: rgba(0, 0, 0, 0.05);
+  --border-card-hover: rgba(0, 0, 0, 0.12);
+  --text-card-primary: #0a0a0a;
+  --text-card-secondary: #555555;
+  --text-card-muted: #999999;
+
+  /* Accents */
+  --accent-green: #059669;
+  --accent-purple: #7c3aed;
+  --accent-pink: #db2777;
+  --accent-orange: #ea580c;
+  --accent-blue: #2563eb;
+  --accent-cyan: #0891b2;
+  --gradient-rainbow: linear-gradient(90deg,
+      #E7AD40, #CC4949, #B05CA4, #6586C1, #47A369);
+  --gradient-text: linear-gradient(135deg, #059669, #2563eb, #7c3aed);
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 50%;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 16px 48px rgba(0, 0, 0, 0.6);
+
+  /* Timing */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ----- Grain Overlay ----- */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ----- Utility ----- */
+.hidden {
+  display: none !important;
+}
+
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===================================================================
+   HERO SECTION
+   =================================================================== */
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 65vh;
+  padding: var(--space-xl);
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 600px;
+  animation: fadeUp 0.8s var(--ease-out) both;
+}
+
+.hero-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+}
+
+.hero-foss-logo {
+  width: auto;
+  height: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.12));
+  animation: fadeUp 0.8s var(--ease-out) both;
+}
+
+.license-foss-icon {
+  width: 52px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+}
+
+.license-flag {
+  display: flex;
+  align-items: center;
+}
+
+.hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+}
+
+.hero-subtitle {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+  color: var(--text-muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2xl);
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 28px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.3s var(--ease-spring);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.hero-cta:hover {
+  background: #f9fafb;
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.hero-cta i {
+  font-size: 0.7rem;
+  animation: subtleBounce 2s ease-in-out infinite;
+}
+
+@keyframes subtleBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================================================================
+   MEMBERS SECTION
+   =================================================================== */
+.members-section {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl) var(--space-3xl);
+}
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+/* ===================================================================
+   BADGE CARD — White ID card style on dark background
+   =================================================================== */
+.badge-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease;
+  animation: cardFadeIn 0.6s var(--ease-out) both;
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+}
+
+.badge-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.badge-card:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.badge-card:nth-child(3) {
+  animation-delay: 0.19s;
+}
+
+.badge-card:nth-child(4) {
+  animation-delay: 0.26s;
+}
+
+.badge-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ----- Card Top: Name + Role ----- */
+.badge-top {
+  padding: 24px 24px 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.badge-info {
+  width: 100%;
+}
+
+.badge-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.4rem, 2.8vw, 1.95rem);
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: #000000;
+  margin-bottom: 2px;
+}
+
+.badge-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #333333;
+}
+
+/* Vertical text on right side */
+.badge-vertical-text {
+  position: absolute;
+  top: 96px;
+  right: 8px;
+  transform: rotate(90deg);
+  transform-origin: top right;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666666;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ----- Card Middle: Photo Area ----- */
+.badge-photo-area {
+  position: relative;
+  flex: 1;
+  /* take up remaining vertical space in card */
+  min-height: 260px;
+  width: 100%;
+  /* Force the wrapper to take full card width */
+  overflow: hidden;
+  padding: 0;
+  background: transparent;
+}
+
+.badge-photo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  /* REQUIRED for object-fit to scale up wide images vertically */
+  object-fit: contain;
+  /* DO NOT CROP ANY PART OF THE IMAGE */
+  object-position: bottom center;
+  filter: grayscale(1) contrast(1.1);
+  transition: filter 0.5s ease;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.badge-card:hover .badge-photo {
+  filter: grayscale(0.2) contrast(1.1);
+}
+
+/* ----- Card Bottom: Tagline + Rainbow Stripe ----- */
+.badge-bottom {
+  position: relative;
+  z-index: 2;
+  padding: 18px 0 10px;
+  text-align: center;
+}
+
+/* Soft rainbow glow at the bottom */
+.badge-bottom::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--gradient-rainbow);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.badge-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #000000;
+  position: relative;
+  z-index: 1;
+}
+
+.badge-rainbow {
+  display: none;
+}
+
+/* ===================================================================
+   LOADING STATE
+   =================================================================== */
+.loading-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-3xl);
+  color: var(--text-on-dark-muted);
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--accent-green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===================================================================
+   PROFILE PAGE — Driver's License Aesthetic
+   =================================================================== */
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.profile-nav {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 50px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.back-link:hover {
+  background: #f9fafb;
+  color: var(--text-primary);
+  transform: translateX(-4px);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* ----- Profile Container ----- */
+.profile-container {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  perspective: 1000px;
+}
+
+/* ----- Notebook Page (Vertical Layout) ----- */
+.license-card {
+  width: 100%;
+  max-width: 600px;
+  /* Notebooks are usually portrait */
+  background: #fdfdfc;
+  /* Off-white paper color */
+  /* Ruled lines pattern */
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 68, 68, 0.4) 1px, transparent 1px);
+  background-size: 100% 32px, 100% 100%;
+  background-position: 0 40px, 40px 0;
+  /* 32px line height, 40px red margin from left */
+  border-radius: 4px 12px 12px 4px;
+  box-shadow:
+    -4px 0 8px rgba(0, 0, 0, 0.05),
+    /* Spine shadow */
+    8px 12px 24px rgba(0, 0, 0, 0.08),
+    1px 0 0 rgba(255, 255, 255, 0.8) inset;
+  overflow: hidden;
+  animation: pageFlipIn 0.8s var(--ease-out) both;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+}
+
+/* Notebook Binding Holes Effect */
+.license-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12px;
+  bottom: 0;
+  width: 12px;
+  background-image: radial-gradient(circle at center, #d1d5db 4px, transparent 5px);
+  background-size: 100% 32px;
+  background-position: 0 8px;
+  z-index: 3;
+}
+
+/* Faint page texture wash */
+.license-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 20px 0 20px -20px rgba(0, 0, 0, 0.1);
+  /* Inner spine shadow */
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes pageFlipIn {
+  0% {
+    opacity: 0;
+    transform: rotateY(-30deg) translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateY(0) translateY(0);
+  }
+}
+
+/* ----- Top Bar (Removed Blue Header) ----- */
+.license-top-bar {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border-bottom: none;
+  padding: 42px 32px 16px 64px;
+  /* Account for 40px margin */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.license-header-text h2 {
+  font-family: 'Space Mono', monospace;
+  /* Stamped look */
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #111827;
+  display: inline-block;
+}
+
+.license-header-text p {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #ef4444;
+  /* Red stamp look */
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.license-flag {
+  font-size: 1.8rem;
+  color: rgba(0, 0, 0, 0.1);
+}
+
+/* ----- Body (Notebook Content) ----- */
+.license-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 32px 32px 64px;
+  /* Account for red margin */
+  gap: 32px;
+}
+
+@media (min-width: 500px) {
+  .license-body {
+    flex-direction: column;
+    /* Keep vertical for notebook */
+    align-items: flex-start;
+  }
+}
+
+/* ----- Photo (Clean Style) ----- */
+.license-left {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.profile-photo-wrapper {
+  width: 220px;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Removed white border, background, and shadow to look painted on or flat */
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* DO NOT CROP */
+  object-position: bottom center;
+  position: relative;
+  z-index: 1;
+  filter: none;
+  opacity: 1;
+}
+
+/* Custom scaling overrides for images with excessive transparent padding */
+.photo-havis {
+  transform: scale(1.35);
+  transform-origin: bottom center;
+}
+
+.photo-sanjana {
+  transform: scale(1.85);
+  /* Highly aggressive scale due to tiny body in frame */
+  transform-origin: bottom center;
+}
+
+/* ----- Right (Details Written on Lines) ----- */
+.license-right {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.license-field-row {
+  display: flex;
+  gap: 16px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.license-field-group {
+  position: relative;
+}
+
+.license-field-group label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #ef4444;
+  /* Red ink annotation */
+  margin-bottom: 2px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Handwriting effect for the main name */
+.license-value-large {
+  font-family: 'Caveat', 'Kalam', 'Segoe Print', cursive, sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  /* Blue pen ink */
+  line-height: 1;
+  letter-spacing: 0;
+  transform: rotate(-1deg);
+  /* Slight handwritten tilt */
+  display: inline-block;
+}
+
+/* Handwriting effect for smaller details */
+.license-value {
+  font-family: 'Caveat', 'Kalam', 'Segoe Print', cursive, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111827;
+  /* Darker ink */
+  line-height: 1;
+}
+
+/* Chamber Lead Badge */
+.license-chamber-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.chamber-logo {
+  width: 64px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+}
+
+/* Contact Grid */
+.license-contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.license-contact-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #f3f4f6;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  color: #4b5563;
+  font-size: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.license-contact-item span {
+  display: none;
+}
+
+.license-contact-item:hover {
+  background: #e5e7eb;
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+/* ----- Bottom Action Area (Stamps/Stickers) ----- */
+.license-bottom-bar {
+  position: relative;
+  z-index: 1;
+  padding: 24px 32px 32px 64px;
+  background: transparent;
+  border-top: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* Removed the rainbow identity line for this theme */
+.license-bottom-bar .badge-rainbow {
+  display: none;
+}
+
+/* Bottom bar layout — ID fields on left, stamp on right */
+.license-bottom-left {
+  display: flex;
+  gap: 24px;
+}
+
+.license-id-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.license-id-field label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: #ef4444;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.license-id-code {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.license-issued-date {
+  font-family: 'Caveat', 'Kalam', 'Segoe Print', cursive, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+.license-barcode-group {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.barcode-tagline {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.45rem;
+  color: #6b7280;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+}
+
+/* ----- Error State ----- */
+.error-state {
+  text-align: center;
+  padding: var(--space-3xl);
+  animation: fadeUp 0.6s var(--ease-out) both;
+}
+
+.error-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background: rgba(236, 72, 153, 0.08);
+  color: var(--accent-pink);
+  font-size: 1.8rem;
+  margin-bottom: var(--space-xl);
+}
+
+.error-state h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: var(--space-md);
+}
+
+.error-state p {
+  color: var(--text-on-dark-muted);
+  max-width: 360px;
+  margin: 0 auto var(--space-xl);
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 14px 32px;
+  background: var(--gradient-rainbow);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #0a0a0a;
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(6, 214, 160, 0.2);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(6, 214, 160, 0.35);
+}
+
+/* ----- 404 Error Page ----- */
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.error-code {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(5rem, 15vw, 10rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: var(--space-md);
+  animation: fadeUp 0.8s var(--ease-out) both;
+}
+
+.error-message {
+  font-size: 1.2rem;
+  color: var(--text-on-dark-muted);
+  margin-bottom: var(--space-sm);
+  animation: fadeUp 0.8s var(--ease-out) 0.1s both;
+}
+
+.error-hint {
+  font-size: 0.9rem;
+  color: var(--text-on-dark-muted);
+  margin-bottom: var(--space-2xl);
+  animation: fadeUp 0.8s var(--ease-out) 0.2s both;
+}
+
+.error-container .btn-primary {
+  animation: fadeUp 0.8s var(--ease-out) 0.3s both;
+}
+
+/* ----- Footer ----- */
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-md) var(--space-xl);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-on-dark-muted);
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pulse {
+  color: var(--accent-pink);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ===================================================================
+   RESPONSIVE
+   =================================================================== */
+@media (max-width: 1100px) {
+  .members-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+@media (max-width: 600px) {
+  /* --- Landing page --- */
+  .members-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .hero {
+    min-height: 50vh;
+    padding: var(--space-lg);
+  }
+
+  .hero-title {
+    font-size: 2.6rem;
+  }
+
+  .badge-photo-area {
+    min-height: 200px;
+  }
+
+  .badge-name {
+    font-size: 1.2rem;
+  }
+
+  /* --- Profile page --- */
+  .profile-nav {
+    padding: var(--space-md) var(--space-md);
+  }
+
+  .profile-container {
+    padding: var(--space-md);
+    align-items: flex-start;
+  }
+
+  .license-card {
+    max-width: 100%;
+    border-radius: 4px 10px 10px 4px;
+  }
+
+  .license-top-bar {
+    padding: 32px 20px 12px 48px;
+  }
+
+  .license-header-text h2 {
+    font-size: 1.1rem;
+  }
+
+  .license-header-text p {
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+  }
+
+  .license-foss-icon {
+    width: 36px;
+  }
+
+  .license-body {
+    padding: 12px 20px 24px 48px;
+    gap: 20px;
+  }
+
+  .profile-photo-wrapper {
+    width: 180px;
+    height: 180px;
+    border-radius: 8px;
+  }
+
+  .license-right {
+    gap: 18px;
+    margin-top: 8px;
+  }
+
+  .license-value-large {
+    font-size: 2rem;
+  }
+
+  .license-value {
+    font-size: 1.3rem;
+  }
+
+  .license-field-group label {
+    font-size: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .license-field-row {
+    gap: 12px;
+  }
+
+  .chamber-logo {
+    width: 52px;
+  }
+
+  .license-contact-grid {
+    gap: 8px;
+  }
+
+  .license-contact-item {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+  }
+
+  .license-bottom-bar {
+    padding: 16px 20px 24px 48px;
+  }
+
+  .license-id-code {
+    font-size: 0.65rem;
+    white-space: nowrap;
+  }
+
+  .license-issued-date {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .badge-name {
+    font-size: 1rem;
+  }
+
+  .license-top-bar {
+    padding: 28px 16px 10px 44px;
+  }
+
+  .license-body {
+    padding: 10px 16px 20px 44px;
+    gap: 16px;
+  }
+
+  .profile-photo-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+
+  .license-right {
+    gap: 14px;
+  }
+
+  .license-value-large {
+    font-size: 1.7rem;
+  }
+
+  .license-value {
+    font-size: 1.1rem;
+  }
+
+  .license-contact-item {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+
+  .license-bottom-bar {
+    padding: 12px 16px 20px 44px;
+    gap: 12px;
+  }
+
+  .license-bottom-left {
+    gap: 12px;
+  }
+
+  .license-id-field label {
+    font-size: 0.45rem;
+  }
+
+  .license-id-code {
+    font-size: 0.5rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .license-issued-date {
+    font-size: 0.8rem;
+  }
+}

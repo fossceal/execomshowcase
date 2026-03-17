@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Execom XXVI — Executive Committee</title>
+  <meta name="description"
+    content="Meet the Executive Committee members of Execom XXVI. Scan a badge or browse profiles to connect." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="assets/images/foss-logo-icon.png" />
+</head>
+
+<body>
+
+  <!-- Subtle grain overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Hero Section -->
+  <header class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge-icon">
+        <a href="https://foss.ceal.in/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/foss-logo-icon.png" alt="FOSS Club Logo" class="hero-foss-logo" />
+        </a>
+      </div>
+      <h1 class="hero-title">EXECOM <span class="gradient-text">XXVI</span></h1>
+      <p class="hero-subtitle">Executive Committee — May the FOSS be with you</p>
+      <a href="#members" class="hero-cta" id="hero-cta">
+        <span>View Members</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- Members Grid -->
+  <main class="members-section" id="members">
+    <div class="members-grid" id="members-grid">
+      <!-- Cards injected by JS -->
+      <div class="loading-state" id="loading-state">
+        <div class="spinner"></div>
+        <p>Loading members…</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <p><a href="https://foss.ceal.in/chamber/303/train.html" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">© fossexecom train303</a></p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>

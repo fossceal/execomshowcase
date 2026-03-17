@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member Profile — Execom XXVI</title>
+    <meta name="description" content="View contact details and social profiles for this Execom XXVI member." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/png" href="assets/images/foss-logo-icon.png" />
+</head>
+
+<body class="profile-page">
+
+    <!-- Subtle grain overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+
+
+    <!-- Profile Card -->
+    <main class="profile-container" id="profile-container">
+
+        <!-- Loading state -->
+        <div class="loading-state" id="loading-state">
+            <div class="spinner"></div>
+            <p>Loading profile…</p>
+        </div>
+
+        <!-- Error state (hidden by default) -->
+        <div class="error-state hidden" id="error-state">
+            <div class="error-icon"><i class="fa-solid fa-user-slash"></i></div>
+            <h2>Member Not Found</h2>
+            <p>The member ID in the URL doesn't match any records. Please check the barcode and try again.</p>
+            <a href="index.html" class="btn-primary" id="error-home-btn">
+                <i class="fa-solid fa-house"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- Profile content (hidden until loaded) -->
+        <article class="license-card hidden" id="profile-card">
+
+            <div class="license-top-bar">
+                <div class="license-header-text">
+                    <h2>EXECOM XXVI</h2>
+                    <p>OFFICIAL IDENTIFICATION</p>
+                </div>
+                <div class="license-flag">
+                    <a href="https://foss.ceal.in/" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/images/foss-logo-full.png" alt="FOSS" class="license-foss-icon" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="license-body">
+                <div class="license-left">
+                    <div class="profile-photo-wrapper">
+                        <img id="profile-photo" class="profile-photo" src="" alt="Member photo" />
+                    </div>
+                </div>
+
+                <div class="license-right">
+                    <div class="license-field-group">
+                        <label>1. SURNAME / GIVEN NAME</label>
+                        <div class="license-value-large" id="profile-name"></div>
+                    </div>
+
+                    <div class="license-field-row">
+                        <div class="license-field-group flex-2">
+                            <label>2. DESIGNATION</label>
+                            <div class="license-value" id="profile-designation"></div>
+                        </div>
+                        <div class="license-field-group flex-1">
+                            <label>3. DEPT</label>
+                            <div class="license-value" id="profile-department"></div>
+                        </div>
+                    </div>
+
+                    <!-- Chamber Lead (shown only for chamber leads) -->
+                    <div class="license-field-group hidden" id="profile-chamber-group">
+                        <label>4. CHAMBER LEAD</label>
+                        <div class="license-chamber-badge">
+                            <a href="#" id="profile-chamber-link" target="_blank" rel="noopener noreferrer">
+                                <img id="profile-chamber-img" class="chamber-logo" src="" alt="Chamber badge" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="license-field-group">
+                        <label id="contacts-label">4. CONTACT &amp; SOCIALS</label>
+                        <div class="license-contact-grid">
+                            <a href="#" id="detail-email" class="license-contact-item" title="Email">
+                                <i class="fa-solid fa-envelope"></i> <span id="detail-email-value"></span>
+                            </a>
+                            <a href="#" id="detail-phone" class="license-contact-item" title="GitHub">
+                                <i class="fa-brands fa-github"></i> <span id="detail-phone-value"></span>
+                            </a>
+                            <a href="#" id="detail-instagram" class="license-contact-item" target="_blank"
+                                rel="noopener noreferrer" title="Instagram">
+                                <i class="fa-brands fa-instagram"></i> <span id="detail-instagram-value"></span>
+                            </a>
+                            <a href="#" id="detail-linkedin" class="license-contact-item" target="_blank"
+                                rel="noopener noreferrer" title="LinkedIn">
+                                <i class="fa-brands fa-linkedin-in"></i> <span id="detail-linkedin-value"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="license-bottom-bar">
+                <div class="license-bottom-left">
+                    <div class="license-id-field">
+                        <label>ID</label>
+                        <span id="license-member-id" class="license-id-code">FOSS-XXVI-000</span>
+                    </div>
+                    <div class="license-id-field">
+                        <label>ISSUED</label>
+                        <span class="license-issued-date">2025</span>
+                    </div>
+                </div>
+                <div class="license-barcode-group">
+                    <span class="barcode-tagline">#maythefossbewithyou</span>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+<!-- Footer -->
+<footer class="footer" id="footer">
+    <p><a href="https://foss.ceal.in/chamber/303/train.html" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">© fossexecom train303</a></p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
